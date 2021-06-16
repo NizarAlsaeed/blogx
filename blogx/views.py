@@ -1,23 +1,27 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Article
+from django.urls import reverse_lazy
 # Create your views here.
-
-class AuthorHomeView(ListView):
-    """main page"""
-    template_name = 'blogx/author_home.html'
-    model = Article
 
 class AuthorCreateView(CreateView):
     """main page"""
-    template_name = 'blogx/author_home.html'
+    template_name = 'blogx/author_create.html'
     model = Article
+    fields = ['title', 'author', 'content']
 
-class AuthorArticleView(UpdateView):
+class AuthorUpdateView(UpdateView):
     """main page"""
-    template_name = 'blogx/author_article.html'
+    template_name = 'blogx/author_update.html'
     model = Article
+    fields = ['title', 'author', 'content']
 
+class AuthorDeleteView(DeleteView):
+    """main page"""
+    template_name = 'blogx/author_delete.html'
+    model = Article
+    fields = ['title', 'author', 'content']
+    success_url = reverse_lazy('home')
 
 class HomeView(ListView):
     """main page"""

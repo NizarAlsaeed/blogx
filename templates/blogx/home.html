@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <p class="lead">A Django starter Blog.</p>
+
+  {% for article in object_list %}
+  <a href="{% url 'article' article.pk %}">{{article.title}}</a> <br>
+  {% endfor %}
+  {% if user.is_authenticated %}
+  <br>
+  <br>
+  <a href="{% url 'author_create' %}">New Article</a>
+  {% endif %}
+</div>
+{% endblock content %}
